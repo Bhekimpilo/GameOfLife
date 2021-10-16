@@ -18,7 +18,7 @@ namespace GameOfLife
         int rollLimitExcl = 9;
         //bool isRunning = true;
         bool stopAndSpin = false;
-
+        
 
         public void Init()
         {
@@ -102,7 +102,6 @@ namespace GameOfLife
 
             if (destination >= board.tiles.Count)
                 destination = board.tiles.Count - 1;
-
            
             Console.WriteLine("{0} moves {1} steps from {2}...", currentPlayer.name, roll, currentPlayer.position);
             
@@ -110,73 +109,20 @@ namespace GameOfLife
             {
                 currentTile = board.tiles.ElementAt(i);
                  
-                if (currentPlayer.isCareer && (i == 6 || start == 6))
+                if (currentPlayer.isCareer && currentPlayer.position == 6)
                 {
                     i += 11;
                     destination += 11;
                     currentTile = board.tiles.ElementAt(i);
-                    currentPlayer.isCareer = false;
 
-                    if (start != 6)
-                        continue;
                 }
-                              
+               
+                i = ColourFilter(currentTile, i);
 
-                if (currentTile.colour == Colour.AMBER)
+                if (currentPlayer.isCollege && i == 6)
                 {
-
-                    Console.WriteLine("[{0}] {1}", i, currentTile.description);
-
-                    string response = Console.ReadLine().ToLower().Trim();
-                    
-
-                    if (currentTile.actionCode == ActionCodes.INSURANCE)
-                    {
-                        response = ValidateResponse(response);
-
-                        if (response.Equals("y"))
-                        {
-                            currentPlayer.cash -= currentTile.amount;
-                            currentPlayer.insurance += currentTile.amount;
-                            Console.WriteLine("[{0}] Wise choice buying insurance. New balance is {1}", i, currentPlayer.cash);
-
-                        }
-                        else
-                            Console.WriteLine("[{0}] You are not covered in case of disaster", i);
-                    }
-
-                    else
-                    {
-                        response = ValidateOption(response);
-
-                        if (response.Equals("a"))
-                        {
-
-                            currentPlayer.isCareer = true;
-
-                            int dest = 0;
-
-                            if (destination <= 6)
-                                dest = destination;
-                            else
-                                dest = destination + 11;
-
-                            Console.WriteLine("Chose to start a carrer and moves to {0}", dest);
-                        }
-                        else if (response.Equals("b"))
-                        {
-                            i += 4;
-                            destination += 4;
-                            currentPlayer.isCareer = false;
-                            Console.WriteLine("Chose to go to college and moves to {0}", destination);
-                            continue;
-                        }
-                    }
-                    
-                }
-                else
-                {
-                    ColourFilter(currentTile, i);
+                    destination += 4;
+                    continue;
                 }
 
                 if (stopAndSpin)
@@ -186,6 +132,7 @@ namespace GameOfLife
                     break;
                 }
 
+                UpdatePlayerPosition(i);
             }
 
             currentTile = board.tiles.ElementAt(destination);
@@ -193,6 +140,43 @@ namespace GameOfLife
             destination = ActionFilter(currentTile, destination);
             
             UpdatePlayerPosition(destination);
+        }
+
+        private int PathSelection(Tile currentTile, int index)
+        {
+            Console.WriteLine("[{0}] {1}", index, currentTile.description);
+
+            string response = Console.ReadLine().ToLower().Trim();
+
+            if (currentTile.actionCode == ActionCodes.INSURANCE)
+            {
+                response = ValidateResponse(response);
+
+                if (response.Equals("y"))
+                {
+                    currentPlayer.cash -= currentTile.amount;
+                    currentPlayer.insurance += currentTile.amount;
+                    Console.WriteLine("[{0}] Wise choice buying insurance. New balance is {1}", index, currentPlayer.cash);
+
+                }
+                else
+                    Console.WriteLine("[{0}] You are not covered in case of disaster", index);
+            }
+
+            else
+            {
+                response = ValidateOption(response);
+
+                if (response.Equals("a"))
+                    currentPlayer.isCareer = true;
+                else if (response.Equals("b"))
+                {
+                    index += 4;
+                    currentPlayer.isCollege = true;
+                }
+            }
+
+            return index;
         }
         
         private void AddPlayers(List<Player> list)
@@ -358,6 +342,9 @@ namespace GameOfLife
                     currentPlayer.house = 0;
                     currentPlayer.stock = 0;
                     currentPlayer.cash = 5000;
+                    currentPlayer.isCollege = false;
+                    currentPlayer.isCareer = false;
+
                     if (currentPlayer == bridge.owner)
                     {
                         bridge.owner = null;
@@ -413,7 +400,7 @@ namespace GameOfLife
             return destination;
         }
 
-        private void ColourFilter(Tile currentTile, int index)
+        private int ColourFilter(Tile currentTile, int index)
         {
             switch (currentTile.colour)
             {
@@ -445,6 +432,10 @@ namespace GameOfLife
 
                     break;
 
+                case Colour.AMBER:
+                    index = PathSelection(currentTile, index);
+                    break;
+
                 case Colour.ORANGE:
 
                     if (currentPlayer.salary == 0)
@@ -463,7 +454,9 @@ namespace GameOfLife
 
                 default:
                     break;
-            }            
+            }
+
+            return index;
             
         }
        
@@ -657,7 +650,7 @@ namespace GameOfLife
                 Console.WriteLine("You spinned Red and get $2,500 from each player");
                 giftContribution = 2500;
             }
-
+                        
             ContributeGift(currentPlayer, giftContribution);
         }
 

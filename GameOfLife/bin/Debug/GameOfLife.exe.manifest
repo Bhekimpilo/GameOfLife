@@ -42,6 +42,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Autofac.dll" size="210456">
+      <assemblyIdentity name="Autofac" version="3.5.0.0" publicKeyToken="17863AF14B0044DA" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>NYOPgSRLZbQjiDsa5FJN5lMIefw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GameOfLife.exe" size="26624">
       <assemblyIdentity name="GameOfLife" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
@@ -49,7 +61,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>QOzTqeGcwkrPPkWsRUZncrKcdjA=</dsig:DigestValue>
+        <dsig:DigestValue>d88Z6RKQ34xNBBaaHfq4MNw2eaQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -26,3 +26,4 @@ D:\GameOfLife\GameOfLife\bin\Release\GameOfLife.pdb
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.TrustInfo.xml
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.exe.manifest
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.application
+D:\GameOfLife\GameOfLife\bin\Release\Autofac.dll

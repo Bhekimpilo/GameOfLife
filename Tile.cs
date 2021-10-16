@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameOfLife
 {
-    class Tile
+    class Tile 
     {
         public string description { get; set; }
         public int amount { get; set; }

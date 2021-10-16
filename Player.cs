@@ -18,6 +18,7 @@ namespace GameOfLife
         public int kids { get; set; }
         public int insurance { get; set; }
         public bool isCareer { get; set; }
+        public bool isCollege { get; set; }
         public bool isMarried { get; set; }
         public bool isBridgeOwner { get; set; }
         public bool isBlackListed { get; set; }

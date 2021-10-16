@@ -27,3 +27,4 @@ D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.csprojResolveAssemblyReference
 D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.TrustInfo.xml
 D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.exe.manifest
 D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.application
+D:\GameOfLife\GameOfLife\bin\Debug\Autofac.dll
