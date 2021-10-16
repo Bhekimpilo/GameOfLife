@@ -1,3 +1,0 @@
-# GameOfLife
-
-Great, this works!

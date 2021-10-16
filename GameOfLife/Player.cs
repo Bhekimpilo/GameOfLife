@@ -13,30 +13,30 @@ namespace GameOfLife
         public int salary { get; set; }
         public int cash { get; set; }
         public int bankLoan { get; set; }
-        public int house { get; set; }
+        public string career { get; set; }
+        public bool house { get; set; }
         public int stock { get; set; }
         public int kids { get; set; }
-        public int insurance { get; set; }
-        public bool isCareer { get; set; }
         public bool isMarried { get; set; }
-        public bool isBridgeOwner { get; set; }
         public bool isBlackListed { get; set; }
         public bool isRetired { get; set; }
+        public string retirementHome { get; set; }
 
         public Player(string name)
         {
             this.name = name;
             this.position = 0;
-            this.insurance = 0;
             this.salary = 0;
-            this.cash = 10000;
+            this.cash = 5000;
             this.bankLoan = 0;
-            this.house = 0;
+            this.career = null;
+            this.house = false;
             this.stock = 0;
             this.kids = 0;
             this.isMarried = false;
             this.isBlackListed = false;
             this.isRetired = false;
+            this.retirementHome = null;
 
         }
     }

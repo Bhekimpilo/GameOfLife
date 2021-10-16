@@ -8,14 +8,14 @@ namespace GameOfLife
     class Tile
     {
         public string description { get; set; }
-        public int amount { get; set; }
+        public int cashAmount { get; set; }
         public ActionCodes actionCode { get; set; }
-        public Colour colour { get; set; }
+        public TileColour colour { get; set; }
 
-        public Tile(string desc, int amount, ActionCodes code = ActionCodes.CASH, Colour tileColour = Colour.BLACK)
+        public Tile(string desc, int amount, TileColour tileColour = TileColour.BLACK, ActionCodes code = ActionCodes.NEUTRAL)
         {
             description = desc;
-            this.amount = amount;
+            cashAmount = amount;
             actionCode = code;
             colour = tileColour;
 
