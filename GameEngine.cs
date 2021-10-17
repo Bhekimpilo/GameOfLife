@@ -16,7 +16,6 @@ namespace GameOfLife
         
         int currentIndex = 0;
         int rollLimitExcl = 9;
-        //bool isRunning = true;
         bool stopAndSpin = false;
         
 
@@ -27,47 +26,80 @@ namespace GameOfLife
             AddPlayers(players);
             SelectorToss();
             
-            while(players.Where(p => p.isRetired == false).Any())
+            while(players.Any(p => p.isRetired == false))
                 PlayGame(currentPlayer);
         }
 
-        public void PlayGame(Player player)
+        private void AddPlayers(List<Player> list)
         {
-            currentPlayer = player;
+            int count = players.Count;
+            bool adding = true;
 
-            Console.WriteLine("\nCurrent player is {0}. Hit Enter to roll the dice", currentPlayer.name);
-            Console.ReadKey();
-
-            if (currentPlayer.position == board.tiles.Count - 1)
-                SpinToWin();
-            else 
+            do
             {
-                int roll = Spin();
+                Console.Write("Please add player name: ");
+                string name = Console.ReadLine();
 
-                if(roll != -1)
-                    Move(currentPlayer.position, roll);
+                if (!string.IsNullOrEmpty(name) && name.Length >= 4)
+                {
+                    if (!players.Where(m => m.name.Equals(name)).Any())
+                    {
+                        list.Add(new Player(name));
+                        count++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("A player with a similar name already exists. Enter a different one");
+                        continue;
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a name with at least 4 characters");
+                    continue;
+                }
+
+                if (count < 2)
+                    continue;
+
+
+                bool addAgain = true;
+
+                while (addAgain)
+                {
+                    if (count < 6)
+                        Console.Write("Do you want to add another player? (Y/N): ");
+                    else
+                    {
+                        adding = false;
+                        break;
+                    }
+
+                    string response = Console.ReadLine().ToLower();
+                    addAgain = false;
+
+                    if (response.Equals("n"))
+                        adding = false;
+                    else
+                        if (!response.Equals("y"))
+                        {
+                            Console.WriteLine("Invalid input, please enter \'Y\' or \'N\'");
+                            addAgain = true;
+                        }
+                }
+
+
+            } while (adding);
+
+            Console.WriteLine("\nA total of {0} players were added:", count);
+
+            foreach (var player in players)
+            {
+                Console.WriteLine(player.name);
             }
-
-            Console.WriteLine();
-
-            if (players.Any(p => p.isRetired == false))
-                SelectPlayer();
-            else
-                DeclareVictor();
-        }        
-
-        private int Spin()
-        {
-            int roll = randomGenerator.Next(1, rollLimitExcl);
-
-            if (currentPlayer.position == 0 && roll < 3)
-            {
-                Console.WriteLine("Spin a 3 or higher to move from start.");
-                roll = -1;
-            }                
-
-            return roll;
-        }        
+            Console.WriteLine("\nEach player gets $10,000. Good Luck!\n");
+        }
 
         private Player SelectorToss()
         {
@@ -95,6 +127,51 @@ namespace GameOfLife
             return first;
         }
 
+        public void PlayGame(Player player)
+        {
+            currentPlayer = player;
+
+            Console.WriteLine("\nCurrent player is {0}. Hit Enter to roll the dice", currentPlayer.name);
+            var key = Console.ReadKey();
+
+            if (ValidateEnterKey(key))
+            {
+                if (currentPlayer.position == board.tiles.Count - 1)
+                    SpinToWin();
+                else
+                {
+                    int roll = Spin();
+
+                    if (roll != -1)
+                        Move(currentPlayer.position, roll);
+                }
+
+                Console.WriteLine();
+
+                if (players.Any(p => p.isRetired == false))
+                    SelectPlayer();
+                else
+                    DeclareVictor();
+            }
+            else
+            {
+                Console.Write("\b\r");
+            }
+        }
+
+        private int Spin()
+        {
+            int roll = randomGenerator.Next(1, rollLimitExcl);
+
+            if (currentPlayer.position == 0 && roll < 3)
+            {
+                Console.WriteLine("Spin a 3 or higher to move from start.");
+                roll = -1;
+            }                
+
+            return roll;
+        }        
+        
         private void Move(int start, int roll)
         {            
             int destination = start + roll;
@@ -109,11 +186,13 @@ namespace GameOfLife
             {
                 currentTile = board.tiles.ElementAt(i);
                  
-                if (currentPlayer.isCareer && currentPlayer.position == 6)
+                if (currentPlayer.isCareer && i == 6 || currentPlayer.position == 6)
                 {
                     i += 11;
                     destination += 11;
                     currentTile = board.tiles.ElementAt(i);
+                    if(i == 17)
+                        continue;
 
                 }
                
@@ -157,7 +236,6 @@ namespace GameOfLife
                     currentPlayer.cash -= currentTile.amount;
                     currentPlayer.insurance += currentTile.amount;
                     Console.WriteLine("[{0}] Wise choice buying insurance. New balance is {1}", index, currentPlayer.cash);
-
                 }
                 else
                     Console.WriteLine("[{0}] You are not covered in case of disaster", index);
@@ -177,77 +255,6 @@ namespace GameOfLife
             }
 
             return index;
-        }
-        
-        private void AddPlayers(List<Player> list)
-        {
-            int count = players.Count;
-            bool adding = true;
-            
-            do
-            {
-                Console.Write("Please add player name: ");
-                string name = Console.ReadLine();                
-
-                if (!string.IsNullOrEmpty(name) && name.Length >= 4)
-                {
-                    if (!players.Where(m => m.name.Equals(name)).Any())
-                    {
-                         list.Add(new Player(name));
-                        count++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("A player with a similar name already exists. Enter a different one");
-                        continue;
-                    }
-                   
-                }
-                else
-                {
-                    Console.WriteLine("Please enter a name with at least 4 characters");
-                    continue;
-                }
-
-                if (count < 2)
-                    continue;
-                
-
-                bool addAgain = true;                
-
-                while (addAgain)
-                {
-                    if (count < 6)
-                        Console.Write("Do you want to add another player? (Y/N): ");
-                    else
-                    {
-                        adding = false;
-                        break;
-                    }
-
-                    string response = Console.ReadLine().ToLower();
-                    addAgain = false;
-
-                    if (response.Equals("n"))
-                        adding = false;
-                    else
-                        if (!response.Equals("y"))
-                        {
-                            Console.WriteLine("Invalid input, please enter \'Y\' or \'N\'");
-                            addAgain = true;
-                        }
-                }
-                
-                
-            } while (adding);
-
-            Console.WriteLine("\nA total of {0} players were added:", count);
-
-            foreach (var player in players)
-            {
-                Console.WriteLine(player.name);
-            }
-            Console.WriteLine("\nEach player gets $10,000. Good Luck!\n" );
         }
 
         private Player SelectPlayer()
@@ -475,7 +482,7 @@ namespace GameOfLife
                     Pay(currentPlayer, bridge.tollfee);
                     bridge.owner.cash += bridge.tollfee;
                     Console.WriteLine("[{0}] You paid {1} toll fee to {2}. New balance is {3}", index, bridge.tollfee, bridge.owner.name, currentPlayer.cash);
-                    Console.WriteLine("[{0}]\'s balance is now {1}", bridge.owner.name, bridge.owner.cash);
+                    Console.WriteLine("{0}\'s balance is now {1}", bridge.owner.name, bridge.owner.cash);
                 }
                 else
                     Console.WriteLine("[{0}] You own the bridge so you get a free pass", index);
@@ -557,9 +564,9 @@ namespace GameOfLife
         private void Pay(Player player, int amount)
         {
             if (amount > player.cash)
-                GetBankHelpToPay(amount);
+                GetBankHelpToPay(player, amount);
             else
-                currentPlayer.cash -= amount;
+                player.cash -= amount;
         }
 
         private string ValidateResponse(string response)
@@ -603,6 +610,18 @@ namespace GameOfLife
 
             return response;
         }
+
+        private bool ValidateEnterKey(ConsoleKeyInfo key)
+        {
+            while (true)
+            {
+                if (key.Key.Equals(ConsoleKey.Enter))
+                    return true;
+                else
+                    return false;
+            }
+
+        }        
 
         private int ValidateGuess(string guess)
         {
@@ -654,13 +673,13 @@ namespace GameOfLife
             ContributeGift(currentPlayer, giftContribution);
         }
 
-        private void ContributeGift(Player currentPlayer, int giftContribution)
+        private void ContributeGift(Player weddingPlayer, int giftContribution)
         {
             int totalContribution = 0;
            
             foreach (Player player in players.Where(p => p.isRetired == false))
             {
-                if (player != currentPlayer)
+                if (player != weddingPlayer)
                 {
                     Pay(player, giftContribution);
                     totalContribution += giftContribution;
@@ -668,42 +687,43 @@ namespace GameOfLife
                 }
                 
             }
-            currentPlayer.cash += totalContribution;
+            weddingPlayer.cash += totalContribution;
             Console.WriteLine("{0} received a total of {1} in wedding presents. New Balance is {2}", 
-                currentPlayer.name, totalContribution, currentPlayer.cash);
+                weddingPlayer.name, totalContribution, weddingPlayer.cash);
         }
 
         private void DeclareVictor()
         {
             foreach (Player player in players)
             {
-                Console.WriteLine("{0} has a cash total of {1}", player.name, player.cash);
+                Console.WriteLine("{0} has a cash total of {1}\n", player.name, player.cash);
             }
 
-            Console.WriteLine("{0} won this game. Game Over...\nPress Enter to Exit\n\n", players.OrderByDescending(p => p.cash).First().name);
+            Console.WriteLine("Game over! {0} won this game....\n", players.OrderByDescending(p => p.cash).First().name);
+            Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();
             Environment.Exit(0);
         }
 
-        private void GetBankHelpToPay(int amount)
+        private void GetBankHelpToPay(Player player, int amount)
         {
             //Bank gives 10k, 20k, 50k and 100k loans
             int loan = 0;
 
-            if (amount - currentPlayer.cash < 10000)
+            if (amount - currentPlayer.cash <= 10000)
                 loan = 10000;
-            else if (amount - currentPlayer.cash < 20000 && amount - currentPlayer.cash > 10000)
+            else if (amount - currentPlayer.cash <= 20000 && amount - currentPlayer.cash > 10000)
                 loan = 20000;
-            else if (amount - currentPlayer.cash < 50000 && amount - currentPlayer.cash > 20000)
+            else if (amount - currentPlayer.cash <= 50000 && amount - currentPlayer.cash > 20000)
                 loan = 50000;
             else
                 loan = 100000;
 
-            Console.WriteLine("Received a loan of {0} from the bank", loan);
+            Console.WriteLine("{0} received a loan of {1} from the bank", player.name, loan);
 
-            currentPlayer.bankLoan += loan;
-            currentPlayer.cash += loan;
-            currentPlayer.cash -= amount;
+            player.bankLoan += loan;
+            player.cash += loan;
+            player.cash -= amount;
         }
 
     }

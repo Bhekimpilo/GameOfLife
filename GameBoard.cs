@@ -39,7 +39,7 @@ namespace GameOfLife
             tiles.Add(new Tile("Bank loan interest is due", 0, ActionCodes.BANKLOAN, Colour.GREEN));
             tiles.Add(new Tile("Crossed a bridge, pay or collect toll.", 0, ActionCodes.BRIDGE, Colour.GREEN));
             tiles.Add(new Tile("Collect overtime for working late", 2500, ActionCodes.CASH));
-            tiles.Add(new Tile("Get Married...", 0, ActionCodes.GET_MARRIED, Colour.RED));
+            tiles.Add(new Tile("Stop to get Married...", 0, ActionCodes.GET_MARRIED, Colour.RED));
             tiles.Add(new Tile("Pay speeding ticket fine", -500));
             tiles.Add(new Tile("Collect tax refund...", 1500));
             tiles.Add(new Tile("Would you like to buy a house for $36,000? (Y/N)", 36000, ActionCodes.HOUSE, Colour.BLUE));

@@ -7,7 +7,6 @@ namespace GameOfLife
 {
     class Player
     {
-
         public string name { get; set; }
         public int position { get; set; }
         public int salary { get; set; }
