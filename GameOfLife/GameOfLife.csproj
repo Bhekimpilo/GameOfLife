@@ -80,14 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GameEngine.cs">
-      <Link>GameEngine.cs</Link>
-    </Compile>
     <Compile Include="ActionCodes.cs" />
     <Compile Include="BankLoan.cs" />
     <Compile Include="BridgeModel.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="GameBoard.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="IBridgeModel.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="IGameboard.cs" />
