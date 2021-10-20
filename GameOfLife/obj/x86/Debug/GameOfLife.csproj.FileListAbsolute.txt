@@ -28,3 +28,4 @@ D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.TrustInfo.xml
 D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.exe.manifest
 D:\GameOfLife\GameOfLife\obj\x86\Debug\GameOfLife.application
 D:\GameOfLife\GameOfLife\bin\Debug\Autofac.dll
+D:\GameOfLife\GameOfLife\bin\Debug\GameOfLife.exe.config

@@ -16,7 +16,6 @@ C:\Users\IIS\Documents\Visual Studio 2010\Projects\GameOfLife\GameOfLife\bin\Rel
 C:\Users\IIS\Documents\Visual Studio 2010\Projects\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.TrustInfo.xml
 C:\Users\IIS\Documents\Visual Studio 2010\Projects\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.exe.manifest
 C:\Users\IIS\Documents\Visual Studio 2010\Projects\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.application
-D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.csprojResolveAssemblyReference.cache
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.exe
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.pdb
 D:\GameOfLife\GameOfLife\bin\Release\GameOfLife.exe.manifest
@@ -27,3 +26,5 @@ D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.TrustInfo.xml
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.exe.manifest
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.application
 D:\GameOfLife\GameOfLife\bin\Release\Autofac.dll
+D:\GameOfLife\GameOfLife\bin\Release\GameOfLife.exe.config
+D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.csprojResolveAssemblyReference.cache
