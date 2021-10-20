@@ -5,17 +5,17 @@ using System.Text;
 
 namespace GameOfLife
 {
-    class Tile
+    public class Tile : ITile
     {
         public string description { get; set; }
-        public int cashAmount { get; set; }
+        public int amount { get; set; }
         public ActionCodes actionCode { get; set; }
-        public TileColour colour { get; set; }
+        public Colour colour { get; set; }
 
-        public Tile(string desc, int amount, TileColour tileColour = TileColour.BLACK, ActionCodes code = ActionCodes.NEUTRAL)
+        public Tile(string desc = "", int amount = 0, ActionCodes code = ActionCodes.CASH, Colour tileColour = Colour.BLACK)
         {
             description = desc;
-            cashAmount = amount;
+            this.amount = amount;
             actionCode = code;
             colour = tileColour;
 

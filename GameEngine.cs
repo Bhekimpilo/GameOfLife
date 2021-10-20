@@ -86,11 +86,12 @@ namespace GameOfLife
             {
                 currentTile = _board.tiles.ElementAt(i);
 
-                if (_player.isCareer && i == 6 ||_player.position == 6)
+                if (_player.isCareer && _player.position == 6 ||start == 6)
                 {
                     i += 11;
                     destination += 11;
                     currentTile = _board.tiles.ElementAt(i);
+                    _player.isCareer = false;
                     if (i == 17)
                         continue;
                     
@@ -341,7 +342,7 @@ namespace GameOfLife
                             Console.WriteLine("[{0}] {1}\'s new balance is {2}", index, _bridge.owner.name, _bridge.owner.cash);
                         }
                         else
-                            Console.WriteLine("Congratulations, your are the first across the bridge and you own it!");
+                            Console.WriteLine("[{0}] Congratulations, your are the first across the bridge and you own it!", index);
                     }
                     else if(currentTile.actionCode == ActionCodes.BANKLOAN)
                     {
