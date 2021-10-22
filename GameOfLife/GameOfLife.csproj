@@ -80,35 +80,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionCodes.cs" />
-    <Compile Include="BankLoan.cs" />
-    <Compile Include="BridgeModel.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="GameBoard.cs" />
+    <Compile Include="Enums\ActionCodes.cs" />
+    <Compile Include="Loan\BankLoan.cs" />
+    <Compile Include="Bridge\BridgeModel.cs" />
+    <Compile Include="Factory\Factory.cs" />
+    <Compile Include="GameBoard\GameBoard.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="IBridgeModel.cs" />
-    <Compile Include="InputValidator.cs" />
-    <Compile Include="IGameboard.cs" />
-    <Compile Include="ILoan.cs" />
-    <Compile Include="IRetirement.cs" />
-    <Compile Include="ISpinner.cs" />
-    <Compile Include="IValidation.cs" />
-    <Compile Include="IPayments.cs" />
-    <Compile Include="IPlayer.cs" />
-    <Compile Include="ITile.cs" />
-    <Compile Include="Payments.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Bridge\IBridgeModel.cs" />
+    <Compile Include="Validation\InputValidator.cs" />
+    <Compile Include="GameBoard\IGameboard.cs" />
+    <Compile Include="Loan\ILoan.cs" />
+    <Compile Include="Retirement\IRetirement.cs" />
+    <Compile Include="Spinner\ISpinner.cs" />
+    <Compile Include="Validation\IValidation.cs" />
+    <Compile Include="Payment\IPayments.cs" />
+    <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Tile\ITile.cs" />
+    <Compile Include="Payment\Payments.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Colour.cs" />
+    <Compile Include="Enums\Colour.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Retirement.cs" />
-    <Compile Include="Spinner.cs" />
-    <Compile Include="Tile.cs" />
+    <Compile Include="Retirement\Retirement.cs" />
+    <Compile Include="Spinner\Spinner.cs" />
+    <Compile Include="Tile\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
