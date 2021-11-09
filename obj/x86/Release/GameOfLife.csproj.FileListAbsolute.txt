@@ -28,3 +28,15 @@ D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.application
 D:\GameOfLife\GameOfLife\bin\Release\Autofac.dll
 D:\GameOfLife\GameOfLife\bin\Release\GameOfLife.exe.config
 D:\GameOfLife\GameOfLife\obj\x86\Release\GameOfLife.csprojResolveAssemblyReference.cache
+D:\GameOfLife\bin\Release\GameOfLife.exe.config
+D:\GameOfLife\bin\Release\GameOfLife.exe.manifest
+D:\GameOfLife\bin\Release\GameOfLife.application
+D:\GameOfLife\bin\Release\GameOfLife.exe
+D:\GameOfLife\bin\Release\GameOfLife.pdb
+D:\GameOfLife\bin\Release\Autofac.dll
+D:\GameOfLife\obj\x86\Release\GameOfLife.csprojResolveAssemblyReference.cache
+D:\GameOfLife\obj\x86\Release\GameOfLife.TrustInfo.xml
+D:\GameOfLife\obj\x86\Release\GameOfLife.exe.manifest
+D:\GameOfLife\obj\x86\Release\GameOfLife.application
+D:\GameOfLife\obj\x86\Release\GameOfLife.exe
+D:\GameOfLife\obj\x86\Release\GameOfLife.pdb

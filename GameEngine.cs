@@ -183,6 +183,12 @@ namespace GameOfLife
 
         private int ActionFilter(ITile currentTile, int index)
         {
+            if (index == 7)
+            {
+                index = 18;
+                currentTile = _board.tiles.ElementAt(index);
+            }
+
             int destination = index;
 
             switch (currentTile.actionCode)
